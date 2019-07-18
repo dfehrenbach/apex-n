@@ -8,7 +8,6 @@ $(function() {
   var rows = 10;
   var rdps_max = 0;
 
-
   function JobOrName(combatant) {
     combatant.JobOrName = combatant.Job || combatant.name;
     var egiSearch = combatant.JobOrName.indexOf("-Egi (");
@@ -26,7 +25,7 @@ $(function() {
       combatant.JobOrName = "chocobo";
     }
     return combatant.JobOrName;
-  };
+  }
 
   function indexOfMax(arr) {
     if (arr.length === 0) {
@@ -44,17 +43,16 @@ $(function() {
     }
 
     return maxIndex;
-  };
+  }
 
   function update(e) {
     var encounter = e.detail.Encounter;
     var combatants = e.detail.Combatant;
-    var htemplate = $('#header-source');
-    var template = $('#combatant-source');
-    var container = $('#overlay').clone();
+    var htemplate = $("#header-source");
+    var template = $("#combatant-source");
+    var container = $("#overlay").clone();
 
-
-    container.html('');
+    container.html("");
 
     var rdps = parseFloat(encounter.encdps);
     var names = Object.keys(combatants).slice(0, rows - 1);
@@ -65,26 +63,25 @@ $(function() {
     for (var i = 0; i < names.length; i++) {
       var combatant = combatants[names[i]];
 
-	  // maxHitDmg might be null or empty, check before performing join
-      var maxHitDmg = (combatant.maxhit).match(/\d/g);
-	  if(maxHitDmg == null || maxHitDmg == "") {
-		continue;
-	  }
-	  
-	  maxHitDmg = maxHitDmg.join("");
-	  
-      var splitMaxHit = (combatant.maxhit).split("-");
+      // maxHitDmg might be null or empty, check before performing join
+      var maxHitDmg = combatant.maxhit.match(/\d/g);
+      if (maxHitDmg == null || maxHitDmg == "") {
+        continue;
+      }
+
+      maxHitDmg = maxHitDmg.join("");
+
+      var splitMaxHit = combatant.maxhit.split("-");
       var maxHitName = splitMaxHit[0];
 
       if (combatant.name == "Limit Break") {
         continue;
       }
-      mharray.splice([i], 0, (combatant.name + "-" + maxHitName + "-" + maxHitDmg));
+      mharray.splice([i], 0, combatant.name + "-" + maxHitName + "-" + maxHitDmg);
       dmgarray.splice([i], 0, parseInt(maxHitDmg));
 
-      var maxhitnolb = (mharray[indexOfMax(dmgarray)]);
-
-    };
+      var maxhitnolb = mharray[indexOfMax(dmgarray)];
+    }
 
     // sanity check
     if (!isNaN(rdps) && rdps != Infinity) {
@@ -93,24 +90,24 @@ $(function() {
 
     var header = htemplate.clone();
     if (encounter.encdps.length <= 7) {
-      header.find('.encounterdps').text(encounter.encdps);
+      header.find(".encounterdps").text(encounter.encdps);
     } else {
-      header.find('.encounterdps').text(encounter.ENCDPS);
+      header.find(".encounterdps").text(encounter.ENCDPS);
     }
-    header.find('.encountername').text(encounter.title);
+    header.find(".encountername").text(encounter.title);
     if (ignoreLimitBreak == true) {
-      header.find('.maxhit').text(maxhitnolb);
+      header.find(".maxhit").text(maxhitnolb);
     } else {
-      header.find('.maxhit').text(encounter.maxhit);
-    };
-    header.find('.encountertime').text('Time ' + encounter.duration);
+      header.find(".maxhit").text(encounter.maxhit);
+    }
+    header.find(".encountertime").text("Time " + encounter.duration);
 
     // set inactive
     if (!e.detail.isActive) {
       rdps_max = 0;
-      $('body').addClass('inactive');
+      $("body").addClass("inactive");
     } else {
-      $('body').removeClass('inactive');
+      $("body").removeClass("inactive");
     }
 
     container.append(header);
@@ -118,7 +115,6 @@ $(function() {
     var limit = Math.max(combatants.length, rows);
     /*var names = Object.keys(combatants).slice(0, rows - 1);*/
     var maxdps = false;
-
 
     for (var i = 0; i < names.length; i++) {
       var combatant = combatants[names[i]];
@@ -128,48 +124,59 @@ $(function() {
         }
       }
       var row = template.clone();
-      var heal = (parseInt(combatant.healed) / parseInt(encounter.healed) * 100).toFixed();
-      var healPct = (isNaN(heal) ? "-" : heal);
+      var heal = ((parseInt(combatant.healed) / parseInt(encounter.healed)) * 100).toFixed();
+      var healPct = isNaN(heal) ? "-" : heal;
       var dpsr = parseInt(combatant.encdps).toFixed();
-      var dpsn = (isNaN(dpsr) ? "0" : dpsr);
-      var critPct = (parseInt(combatant.crithits) / parseInt(combatant.swings) * 100).toFixed();
+      var dpsn = isNaN(dpsr) ? "0" : dpsr;
+      var critPct = ((parseInt(combatant.crithits) / parseInt(combatant.swings)) * 100).toFixed();
 
       if (!maxdps) {
         maxdps = parseFloat(combatant.encdps);
       }
 
-      if (combatant.name == 'YOU') {
+      if (combatant.name == "YOU") {
         combatant.name = yourname;
       }
 
       if (combatant.damage.length > 6) {
-        combatant.damage = combatant.damage.substring(0, combatant.damage.length - 3) + 'K';
+        combatant.damage = combatant.damage.substring(0, combatant.damage.length - 3) + "K";
       }
 
-      row.find('.dps').text(dpsn);
-      row.find('.job-icon').html('<img src="images/grey/' + JobOrName(combatant) + '.png" onerror="$(this).attr(\'src\', \'images/grey/error.png\');">');
-      row.find('.name').text(combatant.name);
-      row.find('.statone').text("C: " + critPct + "%");
-      row.find('.stattwo').text("DH: " + combatant.DirectHitPct);
+      row.find(".dps").text(dpsn);
+      row
+        .find(".job-icon")
+        .html(
+          '<img src="images/grey/' +
+            JobOrName(combatant) +
+            ".png\" onerror=\"$(this).attr('src', 'images/grey/error.png');\">"
+        );
+      row.find(".name").text(combatant.name);
+      row.find(".statone").text("C: " + critPct + "%");
+      row.find(".stattwo").text("DH: " + combatant.DirectHitPct);
       /*row.find('.damage').text(combatant.damage);*/
-      row.find('.bar').css('width', ((parseFloat(combatant.encdps) / maxdps) * 100) + '%');
+      row.find(".bar").css("width", (parseFloat(combatant.encdps) / maxdps) * 100 + "%");
       if (combatant.Job != "") row.addClass("job-" + combatant.Job);
-      if ((combatant.Job == "Sch") || (combatant.Job == "Ast") || (combatant.Job == "Whm") || (combatant.Job == "Cnj")) {
-        row.find('.statone').text("H: " + healPct + "%");
-        row.find('.stattwo').text("OH: " + combatant.OverHealPct);
-      };
+      if (
+        combatant.Job == "Sch" ||
+        combatant.Job == "Ast" ||
+        combatant.Job == "Whm" ||
+        combatant.Job == "Cnj"
+      ) {
+        row.find(".statone").text("H: " + healPct + "%");
+        row.find(".stattwo").text("OH: " + combatant.OverHealPct);
+      }
 
       container.append(row);
     }
 
-    $('#overlay').replaceWith(container);
+    $("#overlay").replaceWith(container);
   }
 
-  $(document).on('onOverlayDataUpdate', function(e) {
+  $(document).on("onOverlayDataUpdate", function(e) {
     update(e.originalEvent);
   });
-  window.addEventListener('message', function(e) {
-    if (e.data.type === 'onOverlayDataUpdate') {
+  window.addEventListener("message", function(e) {
+    if (e.data.type === "onOverlayDataUpdate") {
       update(e.data);
     }
   });

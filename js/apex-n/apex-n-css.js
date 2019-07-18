@@ -1,85 +1,100 @@
-$("#overlay") > $("#header-source").css({
-  "background": "rgba(28, 32, 35, " + headerOpacity + ")"
-});
-$("#overlay") > $("#combatant-source").css({
-  "background": "rgba(255, 255, 255, " + partyOpacity + ")"
-});
+"use strict";
 
-if (classColors == true && dpsGradient == true) {
-  var gradientTank = "background: linear-gradient(to right, " + classTankOne + ", " + classTankTwo + ")";
-  var gradientHealer = "background: linear-gradient(to right, " + classHealerOne + ", " + classHealerTwo + ")";
-  var gradientDps = "background: linear-gradient(to right, " + classDpsOne + ", " + classDpsTwo + ")";
-  var gradientText = "-webkit-background-clip: text!important; -webkit-text-fill-color: transparent";
-  document.getElementById('classColors').innerHTML =
-    "#overlay .bar { background: linear-gradient(to right, " + classOne + "," + classTwo + " );}\
-  #overlay .dps { background: linear-gradient(to right, " + classOne + "," + classTwo + " );" + gradientText + ";}\
-  .job-Pld  .bar, .job-War  .bar, .job-Drk  .bar, .job-Gld  .bar, .job-Mrd  .bar, .job-Gnb  .bar {" + gradientTank + "!important;}\
-  .job-Sch  .bar, .job-Ast  .bar, .job-Whm  .bar, .job-Cnj  .bar {" + gradientHealer + "!important;}\
-  .job-Drg  .bar, .job-Mnk  .bar, .job-Nin  .bar, .job-Blm  .bar, .job-Brd  .bar, .job-Smn  .bar,\
-  .job-Rog  .bar, .job-Thm  .bar, .job-Arc  .bar, .job-Acn  .bar, .job-Pgl  .bar, .job-Lnc  .bar, .job-Mch  .bar, .job-Rdm  .bar, .job-Sam  .bar, .job-Dnc  .bar {" + gradientDps + "!important;}\
-  .job-Pld  .dps, .job-War  .dps, .job-Drk  .dps, .job-Gld  .dps, .job-Mrd  .dps, .job-Gnb  .dps {" + gradientTank + "!important; " + gradientText + ";}\
-  .job-Sch  .dps, .job-Ast  .dps, .job-Whm  .dps, .job-Cnj  .dps {" + gradientHealer + "!important; " + gradientText + ";}\
-  .job-Drg  .dps, .job-Mnk  .dps, .job-Nin  .dps, .job-Blm  .dps, .job-Brd  .dps, .job-Smn  .dps,\
-  .job-Rog  .dps, .job-Thm  .dps, .job-Arc  .dps, .job-Acn  .dps, .job-Pgl  .dps, .job-Lnc  .dps, .job-Mch  .dps, .job-Rdm  .dps, .job-Sam  .dps, .job-Dnc  .dps {" + gradientDps + "!important; " + gradientText + ";}\
-  .job-Pld  .statone, .job-War  .statone, .job-Drk  .statone, .job-Gld  .statone, .job-Mrd  .statone, .job-Gnb  .statone { color: " + classTankOne + "!important;}\
-  .job-Pld  .stattwo, .job-War  .stattwo, .job-Drk  .stattwo, .job-Gld  .stattwo, .job-Mrd  .stattwo, .job-Gnb  .stattwo { color: " + classTankTwo + "!important;}\
-  .job-Sch  .statone, .job-Ast  .statone, .job-Whm  .statone, .job-Cnj  .statone { color: " + classHealerOne + "!important;}\
-  .job-Sch  .stattwo, .job-Ast  .stattwo, .job-Whm  .stattwo, .job-Cnj  .stattwo { color: " + classHealerTwo + "!important;}\
-  .job-Drg  .statone, .job-Mnk  .statone, .job-Nin  .statone, .job-Blm  .statone, .job-Brd  .statone, .job-Smn  .statone,\
-  .job-Rog  .statone, .job-Thm  .statone, .job-Arc  .statone, .job-Acn  .statone, .job-Pgl  .statone, .job-Lnc  .statone, .job-Mch  .statone, .job-Rdm  .statone, .job-Sam  .statone, .job-Dnc  .statone { color: " + classDpsOne + "!important;}\
-  .job-Drg  .stattwo, .job-Mnk  .stattwo, .job-Nin  .stattwo, .job-Blm  .stattwo, .job-Brd  .stattwo, .job-Smn  .stattwo,\
-  .job-Rog  .stattwo, .job-Thm  .stattwo, .job-Arc  .stattwo, .job-Acn  .stattwo, .job-Pgl  .stattwo, .job-Lnc  .stattwo, .job-Mch  .stattwo, .job-Rdm  .stattwo, .job-Sam  .stattwo, .job-Dnc  .stattwo { color: " + classDpsTwo + "!important;}\
-  .statone { color: " + classOne + "!important;} .stattwo { color: " + classTwo + "!important;}\
-  .encountertime { color: " + classColorOne + "!important;} .maxhit { color: " + classColorTwo + "!important;}";
-} if (classColors == true && dpsGradient == false) {
-  var gradientTank = "background: linear-gradient(to right, " + classTankOne + ", " + classTankTwo + ")";
-  var gradientHealer = "background: linear-gradient(to right, " + classHealerOne + ", " + classHealerTwo + ")";
-  var gradientDps = "background: linear-gradient(to right, " + classDpsOne + ", " + classDpsTwo + ")";
-  document.getElementById('classColors').innerHTML =
-    "#overlay .bar { background: linear-gradient(to right, " + classOne + "," + classTwo + " );}\
-  #overlay .dps { color: " + classDps + "; background: none!important; -webkit-text-fill-color: initial!important;}\
-  .job-Pld  .bar, .job-War  .bar, .job-Drk  .bar, .job-Gld  .bar, .job-Mrd  .bar, .job-Gnb  .bar {" + gradientTank + "!important;}\
-  .job-Sch  .bar, .job-Ast  .bar, .job-Whm  .bar, .job-Cnj  .bar {" + gradientHealer + "!important;}\
-  .job-Drg  .bar, .job-Mnk  .bar, .job-Nin  .bar, .job-Blm  .bar, .job-Brd  .bar, .job-Smn  .bar,\
-  .job-Rog  .bar, .job-Thm  .bar, .job-Arc  .bar, .job-Acn  .bar, .job-Pgl  .bar, .job-Lnc  .bar, .job-Mch  .bar, .job-Rdm  .bar, .job-Sam  .bar, .job-Dnc  .bar {" + gradientDps + "!important;}\
-  .job-Pld  .dps, .job-War  .dps, .job-Drk  .dps, .job-Gld  .dps, .job-Mrd  .dps, .job-Gnb  .dps { color: " + classTankDps + "!important;}\
-  .job-Sch  .dps, .job-Ast  .dps, .job-Whm  .dps, .job-Cnj  .dps { color: " + classHealerDps + "!important;}\
-  .job-Drg  .dps, .job-Mnk  .dps, .job-Nin  .dps, .job-Blm  .dps, .job-Brd  .dps, .job-Smn  .dps,\
-  .job-Rog  .dps, .job-Thm  .dps, .job-Arc  .dps, .job-Acn  .dps, .job-Pgl  .dps, .job-Lnc  .dps, .job-Mch  .dps, .job-Rdm  .dps, .job-Sam  .dps, .job-Dnc  .dps { color: " + classDpsDps + "!important;}\
-  .job-Pld  .statone, .job-War  .statone, .job-Drk  .statone, .job-Gld  .statone, .job-Mrd  .statone, .job-Gnb  .statone { color: " + classTankOne + "!important;}\
-  .job-Pld  .stattwo, .job-War  .stattwo, .job-Drk  .stattwo, .job-Gld  .stattwo, .job-Mrd  .stattwo, .job-Gnb  .stattwo { color: " + classTankTwo + "!important;}\
-  .job-Sch  .statone, .job-Ast  .statone, .job-Whm  .statone, .job-Cnj  .statone { color: " + classHealerOne + "!important;}\
-  .job-Sch  .stattwo, .job-Ast  .stattwo, .job-Whm  .stattwo, .job-Cnj  .stattwo { color: " + classHealerTwo + "!important;}\
-  .job-Drg  .statone, .job-Mnk  .statone, .job-Nin  .statone, .job-Blm  .statone, .job-Brd  .statone, .job-Smn  .statone,\
-  .job-Rog  .statone, .job-Thm  .statone, .job-Arc  .statone, .job-Acn  .statone, .job-Pgl  .statone, .job-Lnc  .statone, .job-Mch  .statone, .job-Rdm  .statone, .job-Sam  .statone, .job-Dnc  .statone { color: " + classDpsOne + "!important;}\
-  .job-Drg  .stattwo, .job-Mnk  .stattwo, .job-Nin  .stattwo, .job-Blm  .stattwo, .job-Brd  .stattwo, .job-Smn  .stattwo,\
-  .job-Rog  .stattwo, .job-Thm  .stattwo, .job-Arc  .stattwo, .job-Acn  .stattwo, .job-Pgl  .stattwo, .job-Lnc  .stattwo, .job-Mch  .stattwo, .job-Rdm  .stattwo, .job-Sam  .stattwo, .job-Dnc  .stattwo { color: " + classDpsTwo + "!important;}\
-  .statone { color: " + classOne + "!important;} .stattwo { color: " + classTwo + "!important;}\
-  .encountertime { color: " + classColorOne + "!important;} .maxhit { color: " + classColorTwo + "!important;}";
-}if (classColors == false && dpsGradient == false) {
+$("#overlay") >
+  $("#header-source").css({
+    background: "rgba(28, 32, 35, " + headerOpacity + ")"
+  });
+$("#overlay") >
+  $("#combatant-source").css({
+    background: "rgba(255, 255, 255, " + partyOpacity + ")"
+  });
+
+function constructGradient(job) {
+  var colorOne = colorsByClass[job] ? colorsByClass[job].colorOne : classOne;
+  var colorTwo = colorsByClass[job] ? colorsByClass[job].colorTwo : classTwo;
+  return `background: linear-gradient(to right, ${colorOne}, ${colorTwo})`;
+}
+
+function constructStyles(job, dpsGradient) {
+  var gradientText = dpsGradient
+    ? ` -webkit-background-clip: text!important; -webkit-text-fill-color: transparent;`
+    : "";
+  var classGradient = constructGradient(job);
+  var barStyle = `.job-${job} .bar {${classGradient}!important;}`;
+  var dpsStyle = `.job-${job} .dps {${classGradient}!important;${gradientText}}`;
+  var statOneStyle = `.job-${job} .statone {color: ${colorsByClass[job].colorOne}!important;}`;
+  var statTwoStyle = `.job-${job} .stattwo {color: ${colorsByClass[job].colorTwo}!important;}`;
+  var name = `.job-${job} .name {color: ${colorsByClass[job].fflogs}!important;}`;
+
+  return [barStyle, dpsStyle, statOneStyle, statTwoStyle, name].join(" ");
+}
+
+if (classColors == true) {
+  var gradientText = dpsGradient
+    ? ` -webkit-background-clip: text!important; -webkit-text-fill-color: transparent;`
+    : "";
+  var healers = ["Cnj"];
+  var healersJobs = ["Whm", "Sch", "Ast"];
+  var tanks = ["Mrd", "Gla"];
+  var tanksJobs = ["War", "Pld", "Drk", "Gnb"];
+  var dps = ["Pgl", "Rog", "Lnc", "Thm", "Acn", "Arc"];
+  var dpsJobs = ["Mnk", "Nin", "Drg", "Sam", "Blm", "Rdm", "Smn", "Brd", "Mch", "Dnc"];
+
+  var allJobs = [].concat(healers, healersJobs, tanks, tanksJobs, dps, dpsJobs);
+
+  var healersStyles = healers.map((job) => constructStyles(job, dpsGradient)).join(" ");
+  var healersJobsStyles = healersJobs.map((job) => constructStyles(job, dpsGradient)).join(" ");
+  var tanksStyles = tanks.map((job) => constructStyles(job, dpsGradient)).join(" ");
+  var tanksJobsStyles = tanksJobs.map((job) => constructStyles(job, dpsGradient)).join(" ");
+  var dpsStyles = dps.map((job) => constructStyles(job, dpsGradient)).join(" ");
+  var dpsJobsStyles = dpsJobs.map((job) => constructStyles(job, dpsGradient)).join(" ");
+
+  var overlayBar = `#overlay .bar { background: linear-gradient(to right, ${classOne},${classTwo} );}`;
+  var overlayDps = `#overlay .dps { background: linear-gradient(to right, ${classOne},${classTwo} );${gradientText};}`;
+  var overlayStyles = [overlayBar, overlayDps].join(" ");
+
+  var encounterTime = `.encountertime { color: ${classColorOne}!important;}`;
+  var maxHit = `.maxhit { color: ${classColorTwo}!important;}`;
+
+  document.getElementById("classColors").innerHTML = [
+    overlayStyles,
+    healersStyles,
+    healersJobsStyles,
+    tanksStyles,
+    tanksJobsStyles,
+    dpsStyles,
+    dpsJobsStyles,
+    encounterTime,
+    maxHit
+  ].join(" ");
+}
+
+if (classColors == false && dpsGradient == false) {
   $("#overlay") > $(".dps").css("color", colorDps);
-}if (classColors == false && dpsGradient == true) {
+}
+if (classColors == false && dpsGradient == true) {
   var gradientText = {
-    "background": "linear-gradient(to right, " + colorOne + "," + colorTwo + ")",
+    background: "linear-gradient(to right, " + colorOne + "," + colorTwo + ")",
     "-webkit-background-clip": "text",
     "-webkit-text-fill-color": "transparent"
   };
   var gradientBar = {
-    "background": "linear-gradient(to right, " + colorOne + ", " + colorTwo + ")"
+    background: "linear-gradient(to right, " + colorOne + ", " + colorTwo + ")"
   };
   $("#overlay") > $(".dps").css(gradientText);
   $("#overlay") > $(".heal").css("color", colorOne);
   $("#overlay") > $(".overheal").css("color", colorTwo);
   $("#overlay") > $(".encountertime").css("color", colorOne);
   $("#overlay") > $(".maxhit").css("color", colorTwo);
-  $("#overlay") > $(".bar").css({
-    gradientBar,
-    "background-size": "335px"
-  });
-};
+  $("#overlay") >
+    $(".bar").css({
+      gradientBar,
+      "background-size": "335px"
+    });
+}
 if (overrideStats == true) {
   $(".statone").addClass("override");
   $(".stattwo").addClass("override");
-  document.getElementById('classColors').innerHTML +=
+  document.getElementById("classColors").innerHTML +=
     ".statone.override, .stattwo.override { color: " + overrideColor + "!important;}";
-};
+}
