@@ -1,5 +1,5 @@
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 html {
@@ -88,8 +88,7 @@ html {
   width: 100%;
   display: flex;
   align-items: center;
-  background: white;
-  background: rgba(255, 255, 255, 0.77);
+  background: rgba(28, 32, 35, 0.87) !important;
   padding-bottom: 5px;
 }
 
@@ -134,7 +133,7 @@ html {
 }
 
 #overlay .name {
-  color: #1c2023;
+  color: #ff0062;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -153,7 +152,8 @@ html {
   font-size: 0.85rem;
 }
 
-#overlay .statone, #overlay .stattwo {
+#overlay .statone,
+#overlay .stattwo {
   font-weight: 700;
 }
 
@@ -166,7 +166,9 @@ html {
   padding-left: 10px;
 }
 
-ul, menu, dir {
+ul,
+menu,
+dir {
   display: block;
   list-style-type: none;
   -webkit-margin-before: 0;
@@ -189,10 +191,11 @@ ol {
 
 #overlay .bar {
   background: linear-gradient(to right, #2994f7, #eb318c);
-  background-size: 360px!important;
+  background-size: 360px !important;
 }
 
-#overlay .bottom, #overlay .top {
+#overlay .bottom,
+#overlay .top {
   margin-right: 10px;
 }
 
